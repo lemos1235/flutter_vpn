@@ -1,0 +1,48 @@
+group 'club.lemos.flutter_vpn'
+version '1.0-SNAPSHOT'
+
+rootProject.allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        flatDir {
+            dirs project(':flutter_vpn').file('libs')
+        }
+    }
+}
+
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion 31
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    sourceSets.main {
+        java.srcDirs += 'src/main/kotlin'
+        jniLibs.srcDir 'src/main/jniLibs'
+    }
+
+    defaultConfig {
+        minSdkVersion 23
+        consumerProguardFiles 'proguard-rules.pro'
+    }
+}
+
+dependencies {
+}
