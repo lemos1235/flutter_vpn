@@ -23,3 +23,5 @@ flutter:
       android:
         package: club.lemos.flutter_vpn
         pluginClass: FlutterVpnPlugin
+      windows:
+        pluginClass: FlutterVpnPluginCApi
