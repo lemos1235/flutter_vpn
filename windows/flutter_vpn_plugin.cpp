@@ -13,9 +13,9 @@
 #include <memory>
 #include <sstream>
 
-//extern "C" {
-//#include "leaf.h"
-//}
+extern "C" {
+#include "include/flutter_vpn/leaf.h"
+}
 
 namespace flutter_vpn {
 
@@ -44,8 +44,10 @@ namespace flutter_vpn {
   void FlutterVpnPlugin::HandleMethodCall(
     const flutter::MethodCall<flutter::EncodableValue>& method_call,
     std::unique_ptr<flutter::MethodResult<flutter::EncodableValue>> result) {
-    if (method_call.method_name().compare("connect") == 0) {
-      //leaf_run(0, "config.conf");
+    if (method_call.method_name().compare("prepare") == 0) {
+      result->Success(flutter::EncodableValue(true));
+    } else if (method_call.method_name().compare("connect") == 0) {
+      leaf_run(0, "config.conf");
       result->Success(flutter::EncodableValue(true));
     }
     else {
